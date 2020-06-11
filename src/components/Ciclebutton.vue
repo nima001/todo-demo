@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div :class="['newtask',{'addnew':this.determine}]">
-			<input placeholder="添加新的任务 ..." type="text" @keyup.enter="sure">
+			<input v-model="todolist" placeholder="添加新的任务 ..." type="text" @keyup.enter="sure">
 		</div>
 		<div :class="['cicle',{'trans':this.determine}]" @click="rotate()">+</div>
 		<div :class="['cicle determine',{'show':this.determine}]" @click="sure">确定</div>
@@ -12,6 +12,7 @@
 	export default{
 		data(){
 			return{
+				todolist:'',
 				determine:false
 			}
 		},
@@ -21,6 +22,7 @@
 			},
 			sure(){
 				this.determine = !this.determine
+				this.$store.commit('addList',this.todolist)
 			}
 		}
 	}

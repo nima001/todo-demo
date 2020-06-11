@@ -9,10 +9,11 @@
 			</div>
 		</div>
 		<div :class="['menu',{'menushow':this.menu}]">
-			<div v-for="(item,index) in this.items" :key="index" @click="todo(index)">
+			<div :class="{'active':index==current}" v-for="(item,index) in this.items" :key="index" @click="todo(index)">
 				<p>{{item.message}}</p>
 			</div>
 		</div>
+		<router-view></router-view>
 		<div :class="['cover',{'showcover':this.menu}]" @click="showmenu"></div>
 	</div>
 </template>
@@ -21,6 +22,7 @@
 	export default{
 		data(){
 			return{
+				current:0,
 				menu:false,
 				items: [{
 					message: "待做事项",
@@ -38,14 +40,15 @@
 				this.menu = !this.menu
 			},
 			todo(index){
+				this.current = index
 				if(index==0){
-					alert('sd')
+					this.$router.push({name:'todo'})
 				}else if(index==1){
-					alert('sd')
+					console.log('sd')
 				}else if(index==2){
-					alert('sd')
+					console.log('sd')
 				}else if(index==3){
-					alert('sd')
+					console.log('sd')
 				}
 			}
 		}
