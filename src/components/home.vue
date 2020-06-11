@@ -9,10 +9,11 @@
 			</div>
 		</div>
 		<div :class="['menu',{'menushow':this.menu}]">
-			<div v-for="(item,index) in this.items" :key="index">
+			<div v-for="(item,index) in this.items" :key="index" @click="todo(index)">
 				<p>{{item.message}}</p>
 			</div>
 		</div>
+		<div :class="['cover',{'showcover':this.menu}]" @click="showmenu"></div>
 	</div>
 </template>
 
@@ -35,12 +36,23 @@
 		methods:{
 			showmenu(){
 				this.menu = !this.menu
+			},
+			todo(index){
+				if(index==0){
+					alert('sd')
+				}else if(index==1){
+					alert('sd')
+				}else if(index==2){
+					alert('sd')
+				}else if(index==3){
+					alert('sd')
+				}
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 	.container{
 		height: 100%;
 		width: 100%;
@@ -52,7 +64,6 @@
 		font-size: 20px;
 		display: flex;
 		align-items: center;
-		
 	}
 	.app-menu{
 		width: 28px;
@@ -84,14 +95,58 @@
 		left: -999;
 		transform: translateX(-100px);
 		transition: all .5s ease;
+		z-index: -1;
+		background-color: #FFFFFF;
 	}
 	.menu div:hover{
 		cursor: pointer;
 		color: #FFFFFF;
 		background-color: rgba(0,0,0,.2);
 	}
+	.cover{
+		width: 0;
+		height: 0;
+		position: absolute;
+		background-color: rgba(0,0,0,.5);
+		transition: all .4s ease;
+		z-index: 0;
+	}
 	.menushow{
+		height: 92.6%;
 		opacity: 1;
+		z-index: 999;
 		transform: translateX(0px);
+	}
+	.showcover{
+		width: 99%;
+		height: 92.6%;
+	}
+	@media screen and (max-width:992px) {
+		body,html{
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+		.showcover{
+			width: 95%;
+			height: 92.6%;
+			position: fixed;
+			top: 10%;
+		}
+		.menushow{
+			height: 92.6%;
+			position: fixed;
+			top: 10%;
+			width: 45%;
+		}
+		.content{
+			height: 50px;
+			background-color: aquamarine;
+			color: #ffffff;
+			font-size: 20px;
+			display: flex;
+			align-items: center;
+			position: fixed;
+			width: 95%;
+		}
 	}
 </style>

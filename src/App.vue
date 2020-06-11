@@ -1,14 +1,17 @@
 <template>
     <div id="app">
 		<home></home>
+		<Ciclebutton></Ciclebutton>
     </div>
 </template>
 <script>
-	import home from './components/home.vue'
+import home from './components/home.vue'
+import Ciclebutton from './components/Ciclebutton.vue'
 export default {
   name: 'App',
   components:{
-	home
+	home,
+	Ciclebutton
   }
 }
 </script>
