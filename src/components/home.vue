@@ -22,13 +22,13 @@
 			return{
 				menu:false,
 				items: [{
-				    message: "待做事项",
+					message: "待做事项",
 				}, {
-				    message: "完成事项",
+					message: "完成事项",
 				}, {
-				    message: "皮肤",
+					message: "皮肤",
 				}, {
-				    message: "关于",
+					message: "关于",
 				}],
 			}
 		},
@@ -74,6 +74,8 @@
 		background-color: #ffffff;
 	}
 	.menu{
+		display: flex;
+		flex-direction: column;
 		box-shadow: 0 0 2px 1px #dcdcdc;
 		width: 20%;
 		height: 720px;
@@ -82,6 +84,11 @@
 		left: -999;
 		transform: translateX(-100px);
 		transition: all .5s ease;
+	}
+	.menu div:hover{
+		cursor: pointer;
+		color: #FFFFFF;
+		background-color: rgba(0,0,0,.2);
 	}
 	.menushow{
 		opacity: 1;
