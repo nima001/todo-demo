@@ -125,7 +125,7 @@
 		height: 92.6%;
 		opacity: 1;
 		position: absolute;
-		top:7.4%;
+		top:6.4%;
 		z-index: 999;
 		transform: translateX(0px);
 	}
