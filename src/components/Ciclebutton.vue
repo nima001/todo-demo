@@ -9,20 +9,34 @@
 </template>
 
 <script>
+	import { Dialog } from 'vant';
 	export default{
 		data(){
 			return{
 				todolist:'',
-				determine:false
+				determine:this.$store.getters.determine
 			}
 		},
 		methods:{
 			rotate(){
-				this.determine = !this.determine
+				this.$store.commit('change',this.determine)
+				this.determine=this.$store.getters.determine//更新data数据
+				//关闭其他界面
+				this.$store.commit('showmenu',true)
 			},
 			sure(){
-				this.determine = !this.determine
-				this.$store.commit('addList',this.todolist)
+				if(this.todolist!=""){
+					this.$store.commit('change',this.determine)
+					this.$store.commit('addList',this.todolist)
+					this.todolist = ""
+				}else{
+					Dialog({ message: '请输入内容' });
+				}
+			}
+		},
+		watch:{
+			'$store.state.determine':function(val){
+				this.determine = val
 			}
 		}
 	}
@@ -31,23 +45,29 @@
 <style scoped>
 	.newtask{
 		width: 0;
-		height: 720px;
 		display: flex;
 		margin: auto;
 		opacity: 0;
+		z-index: 998;
+		background-color: #FFF;
 		justify-content: center;
 		transition: all .4s ease;
 	}
 	.addnew{
 		opacity: 1;
-		width: 80%;
+		width: 99%;
+		height: 92%;
+		position: absolute;
+		top: 9.3%;
+		left: .5%;
 	}
 	input{
-		width: 100%;
+		width: 80%;
 		border: 0;
 		outline: none;
 		border-bottom: 1px solid rgb(0,0,0,.3);
-		margin-top: 5%;height: 5%;
+		margin: 5% auto 0;
+		height: 5%;
 	}
 	.cicle{
 		position: fixed;
@@ -62,6 +82,7 @@
 		align-items: center;
 		background-color: #ffaa00;
 		color: #FFFFFF;
+		z-index: 999;
 		transition: all .4s ease;
 	}
 	.cicle:hover{
@@ -86,7 +107,7 @@
 		opacity: 1;
 		width: 50px;
 		height: 50px;
-		z-index: 1;
+		z-index: 998;
 	}
 	@media screen and (max-width:992px) {
 		input{

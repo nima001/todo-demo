@@ -12,13 +12,10 @@ export default new Router({
 			path:'/',
 			redirect:home
 		},{
-			path:'',
-			component:home,
-			children:[{
-				name:'todo',
-				path:'/todo',
-				component:todo
-			}]
+			name:'todo',
+			path:'/todo',
+			component:todo
 		}
+			
 	]
 })

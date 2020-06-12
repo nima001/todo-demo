@@ -23,7 +23,7 @@
 		data(){
 			return{
 				current:0,
-				menu:false,
+				menu:this.$store.getters.menu,
 				items: [{
 					message: "待做事项",
 				}, {
@@ -37,7 +37,9 @@
 		},
 		methods:{
 			showmenu(){
-				this.menu = !this.menu
+				this.$store.commit('showmenu',this.menu)
+				//关闭其他页面
+				this.$store.commit('change',true)
 			},
 			todo(index){
 				this.current = index
@@ -50,6 +52,11 @@
 				}else if(index==3){
 					console.log('sd')
 				}
+			}
+		},
+		watch:{
+			'$store.state.menu':function(val){
+				this.menu = val
 			}
 		}
 	}
@@ -117,6 +124,8 @@
 	.menushow{
 		height: 92.6%;
 		opacity: 1;
+		position: absolute;
+		top:7.4%;
 		z-index: 999;
 		transform: translateX(0px);
 	}
@@ -130,15 +139,15 @@
 			overflow-y: scroll;
 		}
 		.showcover{
-			width: 95%;
+			width: 100%;
 			height: 92.6%;
 			position: fixed;
-			top: 10%;
+			top: 9%;
 		}
 		.menushow{
 			height: 92.6%;
 			position: fixed;
-			top: 10%;
+			top: 9%;
 			width: 45%;
 		}
 		.content{
@@ -149,7 +158,7 @@
 			display: flex;
 			align-items: center;
 			position: fixed;
-			width: 95%;
+			width: 100%;
 		}
 	}
 </style>

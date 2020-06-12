@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<div class="item" v-for="(item,index) in todolist" :key="index">
-			<p>{{item}}</p>
+	<div class="task">
+		<div class="task-item" v-for="(item,index) in todolist" :key="index">
+			<p><span>{{item}}</span><span><a href="#">删除</a><a href="#">完成</a></span></p>
 		</div>
 	</div>
 </template>
@@ -17,14 +17,37 @@
 </script>
 
 <style scoped>
-	.item{
-		padding: 5% 0;
+	.task-item{
+		width: 80%;
+		padding: 10px 0;
 		border-radius: 5px;
-		box-shadow: 0 0 2px 1px rgb(0,0,0,.3);
-		margin-bottom: 2%;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+		margin: 1% auto;
 	}
 	
-	.item p{
+	.task-item p{
 		margin: 0;
+		display: flex;
+		justify-content: space-around;
+	}
+	.task-item span{
+		display: block;
+		width: 15%;
+	}
+	.task-item p a{
+		text-decoration: none;
+		color: #757575;
+	}
+	.task-item p a:last-child{
+		margin-left: 10%;
+	}
+	@media  screen and (max-width:768px) {
+		.task{
+			padding-top: 18%;
+		}
+		.task-item span{
+			display: block;
+			width: 30%;
+		}
 	}
 </style>
