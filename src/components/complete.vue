@@ -1,7 +1,7 @@
 <template>
 	<div class="task">
-		<div class="task-item" v-for="(item,index) in todolist" :key="index">
-			<p><span :class="{'fcolor':item.status==true}">{{item.name}}</span><span><a href="#" @click="del(index)">删除</a><a href="#" @click="complete(index)">完成</a></span></p>
+		<div class="task-item" v-for="(item,index) in completelist" :key="index">
+			<p><span>{{item.name}}</span><span @click="del(index)"><a href="#">删除</a></span></p>
 		</div>
 	</div>
 </template>
@@ -10,15 +10,12 @@
 	export default{
 		data(){
 			return{	
-				todolist:this.$store.getters.todolist,
+				completelist:this.$store.getters.completelist,
 			}
 		},
 		methods:{
 			del(index){
-				this.$store.getters.todolist.splice(index,1);
-			},
-			complete(index){
-				this.$store.commit('completelist',{data:this.todolist[index],status:index})
+				this.$store.getters.completelist.splice(index,1);
 			}
 		}
 	}
@@ -41,9 +38,6 @@
 	.task-item span{
 		display: block;
 		width: 15%;
-		overflow: hidden; 
-		text-overflow: ellipsis; 
-		white-space:nowrap;
 	}
 	.task-item p a{
 		text-decoration: none;
@@ -51,10 +45,6 @@
 	}
 	.task-item p a:last-child{
 		margin-left: 10%;
-	}
-	.fcolor{
-		text-decoration: line-through;
-		opacity: .4;
 	}
 	@media  screen and (max-width:768px) {
 		.task{

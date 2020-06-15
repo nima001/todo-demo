@@ -46,7 +46,7 @@
 				if(index==0){
 					this.$router.push({name:'todo'})
 				}else if(index==1){
-					console.log('sd')
+					this.$router.push({name:'complete'})
 				}else if(index==2){
 					console.log('sd')
 				}else if(index==3){
@@ -117,6 +117,8 @@
 		width: 0;
 		height: 0;
 		position: absolute;
+		top: 6.4%;
+		left: 1%;
 		background-color: rgba(0,0,0,.5);
 		transition: all .4s ease;
 		z-index: 0;

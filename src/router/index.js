@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import {home,todo} from '../components'
+import {home,todo,complete} from '../components'
 Vue.use(Router)
 const originalPush = Router.prototype.push
    Router.prototype.push = function push(location) {
@@ -15,7 +15,11 @@ export default new Router({
 			name:'todo',
 			path:'/todo',
 			component:todo
+		},
+		{
+			name:'complete',
+			path:'/complete',
+			component:complete
 		}
-			
 	]
 })
