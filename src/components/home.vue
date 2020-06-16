@@ -331,14 +331,32 @@
 			width: 100%;
 		}
 	}
-	@media screen and (max-width:320px) {
+	@media screen and (max-width:320px) and (max-height:719px) {
+		.showcover{
+			width: 100%;
+			height: 92.6%;
+			position: fixed;
+			top: 7%;
+			left: 0;
+		}.menushow{
+			height: 92.6%;
+			position: fixed;
+			top: 7%;
+			width: 45%;
+		}
+	}
+	@media screen and (max-width:320px) and (max-height:568px) {
 		.showcover{
 			width: 100%;
 			height: 92.6%;
 			position: fixed;
 			top: 8.8%;
 			left: 0;
+		}.menushow{
+			height: 92.6%;
+			position: fixed;
+			top: 9%;
+			width: 45%;
 		}
 	}
-	
 </style>
