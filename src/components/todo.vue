@@ -1,15 +1,23 @@
 <template>
 	<div class="task">
-		<div class="task-item" v-for="(item,index) in todolist" :key="index">
-			<p><span :class="{'fcolor':item.status==true}">{{item.name}}</span><span><a href="#" @click="del(index)">删除</a><a href="#" @click="complete(index)">完成</a></span></p>
-		</div>
+		<van-swipe-cell class="task-item" v-for="(item,index) in todolist" :key="index">
+			<p>
+				<span class="todoitem" :class="{'fcolor':item.status==true}">{{item.name}}</span>
+				<span class="todoitem">
+					<a v-if="!item.status" href="#" @click="complete(index)">完成</a>
+				</span>
+			</p>
+			<template #right>
+				<van-button style="white-space: nowrap;margin-top: -19%;" square type="danger" text="删除"  @click="del(index)"/>
+			</template>
+		</van-swipe-cell>
 	</div>
 </template>
 
 <script>
 	export default{
 		data(){
-			return{	
+			return{
 				todolist:this.$store.getters.todolist,
 			}
 		},
@@ -38,7 +46,7 @@
 		display: flex;
 		justify-content: space-around;
 	}
-	.task-item span{
+	.todoitem{
 		display: block;
 		width: 15%;
 		overflow: hidden; 
@@ -56,11 +64,16 @@
 		text-decoration: line-through;
 		opacity: .4;
 	}
+	::-webkit-scrollbar{
+		display: none;
+	}
 	@media  screen and (max-width:768px) {
 		.task{
 			padding-top: 18%;
+			height: 450px;
+			overflow: scroll;
 		}
-		.task-item span{
+		.task-item span:not(:last-child){
 			display: block;
 			width: 30%;
 		}

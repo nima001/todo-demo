@@ -1,8 +1,14 @@
 <template>
 	<div class="task">
-		<div class="task-item" v-for="(item,index) in completelist" :key="index">
-			<p><span>{{item.name}}</span><span @click="del(index)"><a href="#">删除</a></span></p>
-		</div>
+		<van-swipe-cell class="task-item" v-for="(item,index) in completelist" :key="index">
+			<p>
+				<span>{{item.name}}</span>
+				<van-tag style="width: 36px;"  plain>已完成</van-tag>
+			</p>
+			<template #right>
+				<van-button style="white-space: nowrap;margin-top: -19%;" square type="danger" text="删除"  @click="del(index)"/>
+			</template>
+		</van-swipe-cell>
 	</div>
 </template>
 
@@ -10,12 +16,16 @@
 	export default{
 		data(){
 			return{	
+				headcolor:this.$store.getters.headcolor,
 				completelist:this.$store.getters.completelist,
 			}
 		},
 		methods:{
 			del(index){
 				this.$store.getters.completelist.splice(index,1);
+			},
+			'$store.state.headcolor':function(val){
+				this.headcolor = val
 			}
 		}
 	}
@@ -34,10 +44,12 @@
 		margin: 0;
 		display: flex;
 		justify-content: space-around;
+		align-items: center;
 	}
 	.task-item span{
 		display: block;
 		width: 15%;
+		margin-right: 2%;
 	}
 	.task-item p a{
 		text-decoration: none;
@@ -46,11 +58,16 @@
 	.task-item p a:last-child{
 		margin-left: 10%;
 	}
+	::-webkit-scrollbar{
+		display: none;
+	}
 	@media  screen and (max-width:768px) {
 		.task{
 			padding-top: 18%;
+			height: 450px;
+			overflow: scroll;
 		}
-		.task-item span{
+		.task-item span:first-child{
 			display: block;
 			width: 30%;
 		}

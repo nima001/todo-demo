@@ -8,7 +8,6 @@
 				<div class="mstrip"></div>
 			</div>
 		</div>
-		<Ciclebutton></Ciclebutton>
 		<div :class="['menu',{'menushow':this.menu}]">
 			<div :class="{'active':index==current}" v-for="(item,index) in this.items" :key="index" @click="todo(index)">
 				<p>{{item.message}}</p>
@@ -21,6 +20,7 @@
 				<li v-for="(item,index) in colors" :key="index"  @click="changecolor(item.color)">{{item.name}}<span :style="{backgroundColor:item.color}"></span></li>
 			</ul>
 		</van-popup>
+		<Ciclebutton></Ciclebutton>
 	</div>
 </template>
 
@@ -54,6 +54,9 @@
 					color:'rgb(254,192,8)'
 				}],
 			}
+		},
+		mounted() {
+			
 		},
 		components:{
 			Ciclebutton
@@ -148,12 +151,10 @@
 		height: 0;
 		position: absolute;
 		top: 6.4%;
-		left: 1%;
+		left: 0;
 		background-color: rgba(0,0,0,.5);
 		transition: all .4s ease;
 		z-index: 0;
-	}
-	.van-popup ul{
 	}
 	.van-popup ul li{
 		padding: 4%;
@@ -171,7 +172,7 @@
 		height: 92.6%;
 		opacity: 1;
 		position: absolute;
-		top:6.4%;
+		top: 6.6%;
 		z-index: 999;
 		transform: translateX(0px);
 	}
@@ -183,7 +184,116 @@
 		background-color: rgb(0,0,0,.3);
 		color: rgb(255,255,255);
 	}
-	@media screen and (max-width:992px) {
+	@media screen and (max-width:768px) {
+		.showcover {
+			width: 100%;
+			height: 92.6%;
+			position: fixed;
+			top: 6.1%;
+			left:0;
+		}
+	}
+	@media screen and (max-width:414px) {
+		.showcover{
+			width: 100%;
+			height: 92.6%;
+			position: fixed;
+			top: 6.8%;
+			left: 0;
+		}
+	}
+	@media screen and (max-width:411px) and (max-height:823px) {
+		.showcover{
+			width: 100%;
+			height: 93.7%;
+			position: fixed;
+			top: 6.1%;
+			left: 0;
+		}
+		.menushow{
+			height: 93.7%;
+			opacity: 1;
+			position: absolute;
+			top: 6.1%;
+			z-index: 999;
+			width: 45%;
+			transform: translateX(0px);
+		}
+	}
+	@media screen and (max-width:411px) and (max-height:731px) {
+		.showcover{
+			width: 100%;
+			height: 93.5%;
+			position: fixed;
+			top: 6.8%;
+			left: 0;
+		}
+		.menushow{
+			height: 93%;
+			opacity: 1;
+			position: absolute;
+			top: 6.8%;
+			z-index: 999;
+			width: 45%;
+			transform: translateX(0px);
+		}
+	}
+	
+	@media screen and (max-width:375px)  and (max-height:812px) {
+		.showcover{
+			width: 100%;
+			height: 92.5%;
+			position: fixed;
+			top: 6.1%;
+			left: 0;
+		}
+		.menushow{
+			height: 92.5%;
+			opacity: 1;
+			position: absolute;
+			top: 6.1%;
+			z-index: 999;
+			width: 45%;
+			transform: translateX(0px);
+		}
+	}
+	@media screen and (max-width:375px)  and (max-height:667px) {
+		.showcover{
+			width: 100%;
+			height: 92.5%;
+			position: fixed;
+			top: 7.5%;
+			left: 0;
+		}
+		.menushow{
+			height: 92.5%;
+			opacity: 1;
+			position: absolute;
+			top: 7.5%;
+			z-index: 999;
+			width: 45%;
+			transform: translateX(0px);
+		}
+	}
+	@media screen and (max-width:360px) {
+		.showcover{
+			width: 100%;
+			height: 92%;
+			position: fixed;
+			top: 7.8%;
+			left: 0;
+		}
+		.menushow{
+			height: 92%;
+			opacity: 1;
+			position: absolute;
+			top:8%;
+			z-index: 999;
+			width: 45%;
+			transform: translateX(0px);
+		}
+	}
+	@media screen and (max-width:340px) {
 		body,html{
 			overflow: hidden;
 			overflow-y: scroll;
@@ -193,6 +303,7 @@
 			height: 92.6%;
 			position: fixed;
 			top: 8.8%;
+			left: 0;
 		}
 		.menushow{
 			height: 92.6%;
@@ -210,4 +321,14 @@
 			width: 100%;
 		}
 	}
+	@media screen and (max-width:320px) {
+		.showcover{
+			width: 100%;
+			height: 92.6%;
+			position: fixed;
+			top: 8.8%;
+			left: 0;
+		}
+	}
+	
 </style>
