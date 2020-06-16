@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="content">
+		<div class="content" :style="{backgroundColor:headcolor}">
 			<div id="header">TO DO IT</div>
 			<div class="app-menu" @click="showmenu">
 				<div class="mstrip"></div>
@@ -8,6 +8,7 @@
 				<div class="mstrip"></div>
 			</div>
 		</div>
+		<Ciclebutton></Ciclebutton>
 		<div :class="['menu',{'menushow':this.menu}]">
 			<div :class="{'active':index==current}" v-for="(item,index) in this.items" :key="index" @click="todo(index)">
 				<p>{{item.message}}</p>
@@ -15,25 +16,47 @@
 		</div>
 		<router-view></router-view>
 		<div :class="['cover',{'showcover':this.menu}]" @click="showmenu"></div>
+		<van-popup v-model="show" position="bottom" :style="{ height: '30%'}">
+			<ul>
+				<li v-for="(item,index) in colors" :key="index"  @click="changecolor(item.color)">{{item.name}}<span :style="{backgroundColor:item.color}"></span></li>
+			</ul>
+		</van-popup>
 	</div>
 </template>
 
 <script>
+	import Ciclebutton from './Ciclebutton.vue'
 	export default{
 		data(){
 			return{
+				headcolor:this.$store.getters.headcolor,
 				current:0,
 				menu:this.$store.getters.menu,
+				show:false,
 				items: [{
 					message: "待做事项",
 				}, {
 					message: "完成事项",
 				}, {
 					message: "皮肤",
+				}],
+				colors: [{
+					name: "夜间模式",
+					color:'rgb(45,45,45)'
 				}, {
-					message: "关于",
+					name: "少女粉",
+					color:'rgb(250,114,152)'
+				}, {
+					name: "姨妈红",
+					color:'rgb(244,66,54)'
+				}, {
+					name: "咸蛋黄",
+					color:'rgb(254,192,8)'
 				}],
 			}
+		},
+		components:{
+			Ciclebutton
 		},
 		methods:{
 			showmenu(){
@@ -48,15 +71,19 @@
 				}else if(index==1){
 					this.$router.push({name:'complete'})
 				}else if(index==2){
-					console.log('sd')
-				}else if(index==3){
-					console.log('sd')
+					this.show = !this.show
 				}
+			},
+			changecolor(color){
+				this.$store.commit('headcolor',color)
 			}
 		},
 		watch:{
 			'$store.state.menu':function(val){
 				this.menu = val
+			},
+			'$store.state.headcolor':function(val){
+				this.headcolor = val
 			}
 		}
 	}
@@ -69,11 +96,11 @@
 	}
 	.content{
 		height: 50px;
-		background-color: aquamarine;
 		color: #ffffff;
 		font-size: 20px;
 		display: flex;
 		align-items: center;
+		transition: all .4s ease;
 	}
 	.app-menu{
 		width: 28px;
@@ -108,6 +135,9 @@
 		z-index: -1;
 		background-color: #FFFFFF;
 	}
+	.menu div{
+		transition: all .2s ease;
+	}
 	.menu div:hover{
 		cursor: pointer;
 		color: #FFFFFF;
@@ -123,6 +153,20 @@
 		transition: all .4s ease;
 		z-index: 0;
 	}
+	.van-popup ul{
+	}
+	.van-popup ul li{
+		padding: 4%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.van-popup ul li span{
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+	}
 	.menushow{
 		height: 92.6%;
 		opacity: 1;
@@ -135,6 +179,10 @@
 		width: 99%;
 		height: 92.6%;
 	}
+	.active{
+		background-color: rgb(0,0,0,.3);
+		color: rgb(255,255,255);
+	}
 	@media screen and (max-width:992px) {
 		body,html{
 			overflow: hidden;
@@ -144,7 +192,7 @@
 			width: 100%;
 			height: 92.6%;
 			position: fixed;
-			top: 9%;
+			top: 8.8%;
 		}
 		.menushow{
 			height: 92.6%;
@@ -154,7 +202,6 @@
 		}
 		.content{
 			height: 50px;
-			background-color: aquamarine;
 			color: #ffffff;
 			font-size: 20px;
 			display: flex;

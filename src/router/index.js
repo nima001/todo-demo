@@ -10,16 +10,21 @@ export default new Router({
 	routes:[
 		{
 			path:'/',
-			redirect:home
+			redirect:'/home'
 		},{
-			name:'todo',
-			path:'/todo',
-			component:todo
-		},
-		{
-			name:'complete',
-			path:'/complete',
-			component:complete
+			name:'home',
+			path:'/home',
+			component:home,
+			children:[{
+				name:'todo',
+				path:'/todo',
+				component:todo
+				},
+				{
+				name:'complete',
+				path:'/complete',
+				component:complete
+			}]
 		}
 	]
 })

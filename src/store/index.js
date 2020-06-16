@@ -7,6 +7,7 @@ export default new Vuex.Store({
 		completelist:[],
 		determine:false,//是否显示添加新任务界面
 		menu:false,//实现显示菜单
+		headcolor:'rgb(250,114,152)',
 	},
 	getters:{
 		todolist(state){
@@ -20,6 +21,9 @@ export default new Vuex.Store({
 		},
 		completelist(state){
 			return state.completelist
+		},
+		headcolor(state){
+			return state.headcolor
 		}
 	}
 	,
@@ -36,6 +40,9 @@ export default new Vuex.Store({
 		completelist(state,payload){
 			state.todolist[payload.status].status = true;//添加新属性
 			state.completelist.unshift(payload.data);
+		},
+		headcolor(state,data){
+			state.headcolor = data
 		}
 	}
 })
