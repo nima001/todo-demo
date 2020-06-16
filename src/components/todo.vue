@@ -38,9 +38,8 @@
 		padding: 10px 0;
 		border-radius: 5px;
 		box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-		margin: 1% auto;
+		margin: 0 auto 4%;
 	}
-	
 	.task-item p{
 		margin: 0;
 		display: flex;

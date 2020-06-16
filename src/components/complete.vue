@@ -2,7 +2,7 @@
 	<div class="task">
 		<van-swipe-cell class="task-item" v-for="(item,index) in completelist" :key="index">
 			<p>
-				<span style="white-space: nowrap;">{{item.name}}</span>
+				<span class="completeitem" style="white-space: nowrap;">{{item.name}}</span>
 				<van-tag style="width: 36px;"  plain>已完成</van-tag>
 			</p>
 			<template #right>
@@ -46,10 +46,12 @@
 		justify-content: space-around;
 		align-items: center;
 	}
-	.task-item span{
+	.completeitem{
 		display: block;
 		width: 15%;
 		margin-right: 2%;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 	.task-item p a{
 		text-decoration: none;

@@ -201,6 +201,16 @@
 			top: 6.8%;
 			left: 0;
 		}
+		.menushow{
+			width: 45%;
+			height: 92.6%;
+			opacity: 1;
+			position: absolute;
+			top: 6.8%;
+			z-index: 999;
+			width: 45%;
+			transform: translateX(0px);
+		}
 	}
 	@media screen and (max-width:411px) and (max-height:823px) {
 		.showcover{
