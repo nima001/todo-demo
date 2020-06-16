@@ -41,7 +41,7 @@
 					message: "皮肤",
 				}],
 				colors: [{
-					name: "夜间模式",
+					name: "幽暗黑",
 					color:'rgb(45,45,45)'
 				}, {
 					name: "少女粉",

@@ -3,7 +3,7 @@
 		<van-swipe-cell class="task-item" v-for="(item,index) in completelist" :key="index">
 			<p>
 				<span class="completeitem" style="white-space: nowrap;">{{item.name}}</span>
-				<van-tag style="width: 36px;"  plain>已完成</van-tag>
+				<van-tag style="width: 36px;transition: all .4s ease;"  plain :color="headcolor">已完成</van-tag>
 			</p>
 			<template #right>
 				<van-button style="white-space: nowrap;margin-top: -19%;" square type="danger" text="删除"  @click="del(index)"/>
@@ -23,7 +23,9 @@
 		methods:{
 			del(index){
 				this.$store.getters.completelist.splice(index,1);
-			},
+			}
+		},
+		watch:{
 			'$store.state.headcolor':function(val){
 				this.headcolor = val
 			}
