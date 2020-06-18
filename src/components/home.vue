@@ -104,6 +104,7 @@
 		display: flex;
 		align-items: center;
 		transition: all .4s ease;
+		z-index: 999;
 	}
 	.app-menu{
 		width: 28px;
